@@ -15,3 +15,9 @@ echo 'export PATH="$ECLIPSE_HOME:$PATH"'   >> ~/.bash_path
 # eclim
 wget 'http://downloads.sourceforge.net/project/eclim/eclim/2.4.1/eclim_2.4.1.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1432566975&use_mirror=iweba' -O eclim_2.4.1.jar
 JAVA_HOME="$HOME/jdk1.8.0_45" PATH="$JAVA_HOME/bin:$PATH" jdk1.8.0_45/bin/java -Dvim.files=/home/vagrant/.vim -Declipse.home=/home/vagrant/eclipse -jar eclim_2.4.1.jar install
+
+# maven
+wget 'http://mirrors.advancedhosters.com/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz'
+tar -xzvf apache-maven-3.3.3-bin.tar.gz
+echo 'export MAVEN_HOME="$HOME/apache-maven-3.3.3"' >> ~/.bash_path
+echo 'export PATH="$MAVEN_HOME/bin:$PATH"'          >> ~/.bash_path
