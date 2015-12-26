@@ -16,8 +16,8 @@ source ~/.bashrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # ruby 2.2.4
-rbenv install -v 2.2.4
-rbenv global 2.2.4
+rbenv install -v 2.3.0
+rbenv global 2.3.0
 
 # mwhittaker.github.io
 git clone git@github.com:mwhittaker/mwhittaker.github.io
