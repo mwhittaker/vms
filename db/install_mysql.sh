@@ -12,6 +12,7 @@ sudo apt-get install -y mysql-server
 # MySQL Setup.
 sudo mysql -u root -e "create user 'vagrant'@'localhost';"
 sudo mysql -u root -e "grant all privileges on *.* to 'vagrant'@'localhost';"
+mysql -e "create database vagrant;"
 
 # mycli Installation
 sudo pip install mycli
