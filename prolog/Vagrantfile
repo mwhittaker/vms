@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v|
         v.memory = 1024
-        v.name = "nothing"
+        v.name = "prolog"
     end
 
     config.vm.provision "puppet" do |puppet|
