@@ -7,7 +7,7 @@ set -euo pipefail
 
 main() {
     wget 'https://cmake.org/files/v3.6/cmake-3.6.2-Linux-x86_64.sh'
-    sh cmake-3.6.2-Linux-x86_64.sh
+    yes | sh cmake-3.6.2-Linux-x86_64.sh
 
     # After you download CMake, you should have the following directory
     # structure:

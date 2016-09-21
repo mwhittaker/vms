@@ -9,9 +9,10 @@
 set -euo pipefail
 
 main() {
-    sudo apt-get install \
+    sudo apt-get install -y \
         clang-3.8 clang-format-3.8 clang-tidy-3.8 libc++-dev libc++abi-dev
-    sudo ln -s "$(which clang-3.8)" /usr/bin/clang++
+    sudo ln -s "$(which clang-3.8)" /usr/bin/clang
+    sudo ln -s "$(which clang++-3.8)" /usr/bin/clang++
     sudo ln -s "$(which clang-format-3.8)" /usr/bin/clang-format
     sudo ln -s "$(which clang-tidy-3.8)" /usr/bin/clang-tidy
 

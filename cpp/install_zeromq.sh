@@ -11,7 +11,7 @@ main() {
     wget 'https://github.com/zeromq/zeromq4-1/releases/download/v4.1.5/zeromq-4.1.5.tar.gz'
     tar -xzvf zeromq-4.1.5.tar.gz
     cd zeromq-4.1.5
-    ./configure
+    CXX="clang++ -stdlib=libc++" ./configure
     make
     sudo make install
     sudo ldconfig
