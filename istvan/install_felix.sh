@@ -11,7 +11,7 @@ main() {
     sudo apt-get install -y g++ autoconf debianutils zlib1g-dev
     git clone git@github.com:frenetic-lang/frenetic.git --branch verification_and_felix
     opam pin add frenetic frenetic -n -k git
-    opam install -y opam_extended frenetic
+    opam install -y async_extended frenetic
 
     # cd frenetic
     # make
