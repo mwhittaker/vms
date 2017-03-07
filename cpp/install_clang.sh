@@ -10,11 +10,13 @@ set -euo pipefail
 
 main() {
     sudo apt-get install -y \
-        clang-3.8 clang-format-3.8 clang-tidy-3.8 libc++-dev libc++abi-dev
+        clang-3.8 clang-format-3.8 clang-tidy-3.8 lldb-3.8 libc++-dev libc++abi-dev
     sudo ln -s "$(which clang-3.8)" /usr/bin/clang
     sudo ln -s "$(which clang++-3.8)" /usr/bin/clang++
     sudo ln -s "$(which clang-format-3.8)" /usr/bin/clang-format
     sudo ln -s "$(which clang-tidy-3.8)" /usr/bin/clang-tidy
+    sudo ln -s "$(which lldb-3.8)" /usr/bin/lldb
+    sudo ln -s "$(which lldb-server-3.8)" /usr/bin/lldb-server
 
     # TODO(mwhittaker): Install clang-include-fixer, asan, tsan, and msan.
 }
