@@ -29,4 +29,6 @@ bash /vagrant/install_prolog.sh
 
 ## Misc
 - If you'd like to change the timezone within the VM, run [`sudo
-  dpkg-reconfigure tzdata`](http://askubuntu.com/a/3385)
+  dpkg-reconfigure tzdata`](http://askubuntu.com/a/3385) or [`sudo timedatectl
+  set-timezone
+  America/Los_Angeles`](https://askubuntu.com/questions/3375/how-to-change-time-zone-settings-from-the-command-line).
