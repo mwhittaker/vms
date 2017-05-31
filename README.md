@@ -32,4 +32,6 @@ bash /vagrant/install_prolog.sh
   dpkg-reconfigure tzdata`](http://askubuntu.com/a/3385) or [`sudo timedatectl
   set-timezone
   America/Los_Angeles`](https://askubuntu.com/questions/3375/how-to-change-time-zone-settings-from-the-command-line).
+  If the time starts to drift, run [`sudo ntpdate
+  time.nist.gov`](https://askubuntu.com/a/81485).
 
