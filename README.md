@@ -29,9 +29,13 @@ bash /vagrant/install_prolog.sh
 
 ## Misc
 - If you'd like to change the timezone within the VM, run [`sudo
-  dpkg-reconfigure tzdata`](http://askubuntu.com/a/3385) or [`sudo timedatectl
-  set-timezone
-  America/Los_Angeles`](https://askubuntu.com/questions/3375/how-to-change-time-zone-settings-from-the-command-line).
-  If the time starts to drift, run [`sudo ntpdate
-  time.nist.gov`](https://askubuntu.com/a/81485).
+  dpkg-reconfigure tzdata`][tzdata_command] or [`sudo timedatectl set-timezone
+  America/Los_Angeles`][timedatectl_command]. If the time starts to drift, run
+  [`sudo ntpdate time.nist.gov`][ntpdate_command].
+- If you're using a GUI, you can change caps lock to control using the
+  instructions [here](https://askubuntu.com/a/604949).
+
+[tzdata_command]: http://askubuntu.com/a/3385
+[timedatectl_command]: https://askubuntu.com/questions/3375/how-to-change-time-zone-settings-from-the-command-line
+[ntpdate_command]: https://askubuntu.com/a/81485
 
