@@ -4,7 +4,14 @@ set -euo pipefail
 
 main() {
     # system dependencies
-    sudo apt-get install -y g++ libssl-dev libreadline-dev zlib1g-dev autoconf bison
+    sudo apt-get install -y \
+        g++ \
+        libssl-dev \
+        libreadline-dev \
+        zlib1g-dev \
+        autoconf \
+        bison \
+        libgdbm-dev
 
     # rb-env
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -18,8 +25,8 @@ main() {
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
     # ruby
-    ~/.rbenv/bin/rbenv install -v 2.3.0-dev
-    ~/.rbenv/bin/rbenv global 2.3.0-dev
+    ~/.rbenv/bin/rbenv install -v 2.4.0
+    ~/.rbenv/bin/rbenv global 2.4.0
 
     # Delete the old ruby once we have a new ruby.
     sudo apt-get remove -y ruby
