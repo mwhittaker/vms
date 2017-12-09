@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box            = "ubuntu/trusty64"
-    config.vm.hostname       = "vm"
+    config.vm.hostname       = "scala"
     config.ssh.forward_x11   = true
     config.ssh.forward_agent = true
     config.vm.network "forwarded_port", guest: 8000, host: 8000
@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provider "virtualbox" do |v|
         v.name = "scala"
         v.cpus = 2
-        v.memory = 2048
+        v.memory = 4096
     end
 
     config.vm.provision "puppet" do |puppet|

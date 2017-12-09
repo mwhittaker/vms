@@ -16,6 +16,13 @@ main() {
     tar -xzvf jdk-8u${JAVA_VERSION}-linux-x64.tar.gz
     echo 'export JAVA_HOME="$HOME/jdk1.8.0_'${JAVA_VERSION}'"' >> ~/.bash_path
     echo 'export PATH="$JAVA_HOME/bin:$PATH"'                  >> ~/.bash_path
+
+    # eclipse.
+    readonly ECLIPSE_TAR="eclipse-java-oxygen-1-linux-gtk-x86_64.tar.gz"
+    wget "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/1/${ECLIPSE_TAR}"
+    tar -xzvf "${ECLIPSE_TAR}"
+    echo 'export ECLIPSE_HOME="$HOME/eclipse"' >> ~/.bash_path
+    echo 'export PATH="$ECLIPSE_HOME:$PATH"'   >> ~/.bash_path
 }
 
 main
