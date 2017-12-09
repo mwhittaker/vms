@@ -6,15 +6,23 @@
 
 set -euo pipefail
 
+boxed() {
+    msg="* $1 *"
+    echo "$msg" | sed 's/./*/g'
+    echo "$msg"
+    echo "$msg" | sed 's/./*/g'
+}
+
 main() {
     sudo apt-get install -y aspcud m4 unzip pkg-config
     wget https://raw.github.com/ocaml/opam/master/shell/opam_installer.sh
-    yes | sh opam_installer.sh /usr/local/bin 4.03.0
-    opam init -a -y
+    # This returns a non-zero exit code sometimes, even though it succeeds.
+    (yes | sh opam_installer.sh /usr/local/bin 4.06.0) || true
     opam update
     opam upgrade
     opam install -y ocamlbuild utop merlin
-    # eval `opam config env`
+    boxed 'Run "eval `opam config env` or open a new terminal."'
+    boxed 'Run "opam install -y core async" to install core and async.'
 }
 
 main
