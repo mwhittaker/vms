@@ -11,7 +11,7 @@ the VM and try again! This directory contains a set of VMs managed by vagrant.
 ## Getting Started
 Install [vagrant](https://www.vagrantup.com/downloads.html) and
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Navigate into a VM's
-directory, start the VM, and ssh into it:
+directory, start the VM, and ssh into it. For example,
 
 ```bash
 cd prolog
@@ -25,6 +25,15 @@ directory.
 ```bash
 bash /vagrant/install_dotfiles.sh
 bash /vagrant/install_prolog.sh
+```
+
+## Creating New VMs
+You can create new VMs using the [`newvm.sh`](newvm.sh) script. For example,
+
+```bash
+# Make a new VM for typescript.
+./newvm.sh typescript
+cd typescript && vagrant up && vagrant ssh
 ```
 
 ## Misc
