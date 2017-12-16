@@ -1,6 +1,4 @@
 # Virtual Machines
-
-## Overview
 Installing and configuring a piece of software is hard. Installing and
 configuring a bunch of potentially conflicting pieces of software with
 varying versions is even harder. And when things go wrong, it's not always
