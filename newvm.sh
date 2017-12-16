@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 usage() {
     echo "Usage: newvm.sh <vm_name>"
 }
@@ -47,7 +49,7 @@ bash /vagrant/install_dotfiles.sh
 \`\`\`
 readme
     cp install_dotfiles.sh "$vmname"
-    cp root_setup.sh "$vmname"
+    (cd "$vmname" && ln -s ../root_setup.sh .)
 }
 
 main "$@"
