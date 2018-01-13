@@ -3,7 +3,7 @@
 set -euo pipefail
 
 main() {
-    sudo npm install -g typescript
+    sudo npm install --global tslint typescript webpack
 }
 
 main
