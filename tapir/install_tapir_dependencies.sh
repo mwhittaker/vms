@@ -4,12 +4,12 @@ set -euo pipefail
 
 main() {
     sudo apt-get install -y \
-        g++ \
         libevent-dev \
+        libgtest-dev \
         libprotobuf-dev \
+        libssl-dev \
         pkg-config \
         protobuf-compiler \
-        libssl-dev \
 
 }
 
