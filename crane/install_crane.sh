@@ -121,12 +121,12 @@ launch_lxc() {
 }
 
 main() {
-    # install_dependencies
-    # setup_bash_path
-    # clone_repo
-    # compile_xtern
-    # install_dynamorio
-    # install_lxc
+    install_dependencies
+    setup_bash_path
+    clone_repo
+    compile_xtern
+    install_dynamorio
+    install_lxc
     launch_lxc
 }
 
