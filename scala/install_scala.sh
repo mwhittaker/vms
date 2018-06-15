@@ -3,11 +3,13 @@
 set -euo pipefail
 
 main() {
-    # http://www.scala-sbt.org/0.13/docs/Installing-sbt-on-Linux.html
-    echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-    sudo apt-get update
-    sudo apt-get install sbt
+    # As described in [1], we install scala by installing sbt.
+    #
+    # [1]: https://www.scala-lang.org/download/
+    local -r version="1.1.6"
+    wget "https://piccolo.link/sbt-${version}.tgz"
+    tar -xzvf "sbt-${version}.tgz"
+    echo 'export PATH="$PATH:$HOME/sbt/bin"' >> ~/.bash_path
 }
 
-main
+main "$@"
