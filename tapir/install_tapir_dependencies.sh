@@ -8,8 +8,9 @@ main() {
         libgtest-dev \
         libprotobuf-dev \
         libssl-dev \
+        libttb-dev \
         pkg-config \
-        protobuf-compiler \
+        protobuf-compiler
 
 }
 
