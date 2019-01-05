@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v|
         v.cpus = 4
-        v.memory = 4096
+        v.memory = 12288
         v.name = "scala"
     end
 
