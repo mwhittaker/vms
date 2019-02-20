@@ -10,6 +10,7 @@ main() {
     sudo apt-get update
     sudo apt-get install -y g++-6
     sudo ln -sf /usr/bin/g++-6 /usr/bin/g++
+    sudo ln -sf /usr/bin/gcc-6 /usr/bin/gcc
 }
 
 main

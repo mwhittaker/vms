@@ -18,8 +18,8 @@ sudo apt-get install -y postgresql-9.6 postgresql-server-dev-9.6 python-dev
 # postgres for vagrant. Then we create a database named vagrant as vagrant.
 #
 # http://www.postgresql.org/docs/current/interactive/database-roles.html
-sudo su postgres -c 'createuser vagrant -s'
-createdb vagrant
+# sudo su postgres -c 'createuser vagrant -s'
+# createdb vagrant
 
 # pgcli Installation
-sudo pip install pgcli
+# sudo pip install pgcli
