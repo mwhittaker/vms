@@ -9,6 +9,17 @@ boxed() {
     echo "$msg" | sed 's/./*/g'
 }
 
+install_dependencies() {
+    boxed "install_dependencies"
+    echo ubuntu | sudo -S apt-get install -y \
+        autoconf axel bison build-essential curl dejagnu flex git libboost-dev \
+        libboost-system-dev libbz2-dev libconfig-dev libdb-dev libevent-dev \
+        libsqlite3-dev libxml-libxml-perl libxml2-dev libxslt1-dev m4 mencoder \
+        nano php5-cgi psmisc python-dev python-pip python-setuptools \
+        subversion sysbench valgrind wget zlib1g-dev
+    echo ubuntu | sudo -S pip install numpy OutputCheck
+}
+
 clone_dotfiles() {
     boxed "clone_dotfiles"
     git clone https://github.com/mwhittaker/dotfiles
@@ -43,6 +54,48 @@ setup_bash_path() {
     fi
 }
 
+compile_xtern() {
+    boxed "compile_xtern"
+    cd $HOME/crane/xtern
+    mkdir -p obj
+    cd obj
+    ../configure --prefix=$XTERN_ROOT/install
+    make clean
+    make
+    make install
+}
+
+compile_paxos() {
+    boxed "compile_paxos"
+    cd $HOME/crane/libevent_paxos
+    ./mk
+    make clean
+    make
+}
+
+install_dynamorio() {
+    boxed "install_dynamorio"
+    sudo apt-get install -y \
+        cmake doxygen ghostscript imagemagick subversion transfig
+    cd /usr/share/
+    if ! [[ -d dynamorio ]]; then
+        sudo git clone https://github.com/DynamoRIO/dynamorio.git
+    fi
+    cd dynamorio
+    sudo mkdir -p build
+    cd build
+    sudo cmake ..
+    sudo make
+    sudo make drcov
+    cd tools
+    # sudo ln -s $PWD/../drcov.drrun64 .
+    sudo mkdir -p lib64
+    cd lib64
+    sudo mkdir -p release
+    cd release
+    sudo ln -sf $PWD/../../../clients/lib64/release/libdrcov.so .
+}
+
 install_criu() {
     boxed "install_criu"
     echo ubuntu | sudo -S apt-get install -y \
@@ -64,7 +117,8 @@ install_criu() {
 
     cd $HOME/crane/tools
     wget http://download.openvz.org/criu/criu-1.6.tar.bz2
-    jxvf criu-1.6.tar.bz2
+    tar jxvf criu-1.6.tar.bz2
+    cd criu-1.6
     make
     echo ubuntu | sudo -S make install
     which criu
@@ -72,13 +126,19 @@ install_criu() {
 
 main() {
     boxed "Inside LXC container u1."
+    boxed "$(whoami)"
+    boxed "$(hostname)"
 
     # Install the basics.
     echo ubuntu | sudo -S apt-get install -y bc git tmux
 
+    install_dependencies
     clone_dotfiles
     clone_repo
     setup_bash_path
+    compile_xtern
+    compile_paxos
+    install_dynamorio
     install_criu
 }
 

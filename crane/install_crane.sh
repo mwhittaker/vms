@@ -11,20 +11,31 @@ boxed() {
 
 install_dependencies() {
     boxed "install_dependencies"
+    sudo apt-get update
     sudo apt-get install -y \
         autoconf axel bison build-essential curl dejagnu flex git libboost-dev \
         libboost-system-dev libbz2-dev libconfig-dev libdb-dev libevent-dev \
         libsqlite3-dev libxml-libxml-perl libxml2-dev libxslt1-dev m4 mencoder \
         nano php5-cgi psmisc python-dev python-pip python-setuptools \
         subversion sysbench valgrind wget zlib1g-dev
-    sudo pip install numpy OutputCheck
+    # sudo pip install numpy OutputCheck
+}
+
+clone_repo() {
+    boxed "clone_repo"
+    if ! [[ -d "$HOME/crane" ]]; then
+        cd "$HOME"
+        git clone https://github.com/mwhittaker/crane
+    fi
 }
 
 setup_bash_path() {
     boxed "setup_bash_path"
     export MSMR_ROOT="$HOME/crane"
     export XTERN_ROOT="$MSMR_ROOT/xtern"
+    set +u
     export LD_LIBRARY_PATH="$MSMR_ROOT/libevent_paxos/.local/lib:$LD_LIBRARY_PATH"
+    set -u
 
     if ! grep 'MSMR_ROOT' ~/.bash_path; then
         echo 'export MSMR_ROOT="$HOME/crane"' >> ~/.bash_path
@@ -37,23 +48,23 @@ setup_bash_path() {
     fi
 }
 
-clone_repo() {
-    boxed "clone_repo"
-    if ! [[ -d "$HOME/crane" ]]; then
-        cd "$HOME"
-        git clone https://github.com/columbia/crane
-    fi
-}
-
 compile_xtern() {
     boxed "compile_xtern"
-    cd $HOME/crane/xtern
+    cd "$XTERN_ROOT"
     mkdir -p obj
     cd obj
-    ../configure --prefix=$XTERN_ROOT/install
+    ../configure --prefix="$XTERN_ROOT/install"
     make clean
     make
     make install
+}
+
+compile_paxos() {
+    boxed "compile_paxos"
+    cd $MSMR_ROOT/libevent_paxos
+    ./mk
+    make clean
+    make
 }
 
 install_dynamorio() {
@@ -122,12 +133,13 @@ launch_lxc() {
 
 main() {
     install_dependencies
-    setup_bash_path
     clone_repo
+    setup_bash_path
     compile_xtern
-    install_dynamorio
-    install_lxc
-    launch_lxc
+    compile_paxos
+    # install_dynamorio
+    # install_lxc
+    # launch_lxc
 }
 
 main
