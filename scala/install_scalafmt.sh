@@ -34,8 +34,12 @@ main() {
     sudo make install
     cd ..
 
-    # Finally, we Install the nailgun version of scalafmt. See
-    # https://scalameta.org/scalafmt/ for installation instructions.
+    # Finally, we Install the nailgun version of scalafmt. See [1] for
+    # installation instructions. See [2] for instructions on how to run
+    # scalafmt with nailgun.
+    #
+    # [1]: https://scalameta.org/scalafmt/
+    # [2]: https://scalameta.org/scalafmt/docs/installation.html#nailgun
     ./coursier bootstrap \
         --standalone com.geirsson:scalafmt-cli_2.12:1.6.0-RC3 \
         -r bintray:scalameta/maven \

@@ -28,4 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provision :shell, :path => "root_setup.sh"
+    config.vm.provision "file",
+        source: "install_dotfiles_master.sh",
+        destination: "/vagrant/install_dotfiles.sh"
 end
