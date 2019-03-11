@@ -50,15 +50,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provision :shell, :path => "root_setup.sh"
+    config.vm.provision "file", source: "root_setup.sh", destination: "/vagrant/root_setup_copy.sh"
+    config.vm.provision "file", source: "install_dotfiles.sh", destination: "/vagrant/install_dotfiles_copy.sh"
 end
 vagrantfile
 cat > "$vmname/README.md" <<readme
 # $vmname
 \`\`\`bash
-bash /vagrant/install_dotfiles.sh
+bash /vagrant/install_dotfiles_copy.sh
 \`\`\`
 readme
-    cp install_dotfiles.sh "$vmname"
+    (cd "$vmname" && ln -s ../install_dotfiles.sh .)
     (cd "$vmname" && ln -s ../root_setup.sh .)
 }
 
