@@ -1,4 +1,6 @@
 .vagrant
+.DS_store
+*_copy.sh
 *.pdf
 *.pdf
 *.jpg
