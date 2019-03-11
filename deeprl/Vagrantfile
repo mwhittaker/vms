@@ -6,22 +6,27 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box            = "ubuntu/trusty64"
-    config.vm.hostname       = "vm"
+    config.vm.hostname       = "deeprl"
     config.ssh.forward_x11   = true
     config.ssh.forward_agent = true
-    config.vm.network "forwarded_port", guest: 8000, host: 8000
+
+    config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8001, host: 8001, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8002, host: 8002, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8003, host: 8003, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8004, host: 8004, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8005, host: 8005, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8006, host: 8006, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8007, host: 8007, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8008, host: 8008, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8009, host: 8009, auto_correct: true
 
     config.vm.provider "virtualbox" do |v|
         v.name = "deeprl"
-        #v.gui = true
         v.cpus = 4
         v.memory = 8192
+        # v.gui = true
     end
 
-    config.vm.provision "puppet" do |puppet|
-        puppet.manifests_path = "puppet/manifests"
-        puppet.manifest_file  = "site.pp"
-        puppet.module_path    = "puppet/modules"
-        puppet.options        = ["--debug"]
-    end
+    config.vm.provision :shell, :path => "root_setup.sh"
 end

@@ -8,7 +8,7 @@ main() {
     cd ~/.mujoco
     wget 'https://www.roboti.us/download/mjpro131_linux.zip'
     unzip mjpro131_linux.zip
-    echo "Copy mjkey.txt!"
+    echo 'Copy mjkey.txt into ~/.mujoco!'
 }
 
 main
