@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box            = "ubuntu/trusty64"
+    config.vm.hostname       = "frankenpaxos"
+    config.ssh.forward_x11   = true
+    config.ssh.forward_agent = true
+
+    config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8001, host: 8001, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8002, host: 8002, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8003, host: 8003, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8004, host: 8004, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8005, host: 8005, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8006, host: 8006, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8007, host: 8007, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8008, host: 8008, auto_correct: true
+    config.vm.network "forwarded_port", guest: 8009, host: 8009, auto_correct: true
+
+    config.vm.provider "virtualbox" do |v|
+        v.cpus = 4
+        v.memory = 12288
+        v.name = "frankenpaxos"
+    end
+
+    config.vm.provision :shell, :path => "root_setup.sh"
+    config.vm.provision "file", source: "root_setup.sh", destination: "/vagrant/root_setup_copy.sh"
+    config.vm.provision "file", source: "install_dotfiles.sh", destination: "/vagrant/install_dotfiles_copy.sh"
+    config.vm.provision "file", source: "install_java8.sh", destination: "/vagrant/install_java8_copy.sh"
+    config.vm.provision "file", source: "install_scala.sh", destination: "/vagrant/install_scala_copy.sh"
+    config.vm.provision "file", source: "install_eclipse_and_eclim.sh", destination: "/vagrant/install_eclipse_and_eclim_copy.sh"
+    config.vm.provision "file", source: "install_scalafmt.sh", destination: "/vagrant/install_scalafmt_copy.sh"
+    config.vm.provision "file", source: "install_conda.sh", destination: "/vagrant/install_conda_copy.sh"
+    config.vm.provision "file", source: "install_mininet.sh", destination: "/vagrant/install_mininet_copy.sh"
+    config.vm.provision "file", source: "install_flamegraphs.sh", destination: "/vagrant/install_flamegraphs_copy.sh"
+end
