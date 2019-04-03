@@ -30,6 +30,7 @@ main() {
         --branch nailgun-all-0.9.1-fix
     cd nailgun
     ../apache-maven-3.6.0/bin/mvn clean install
+    sudo apt-get install -y gcc make
     make
     sudo make install
     cd ..

@@ -19,7 +19,7 @@ main() {
     echo 'export PATH="$HOME/install/FlameGraph:$PATH"' >> ~/.bash_path
 
     # Install perf-map-agent
-    sudo apt-get install cmake g++
+    sudo apt-get install -y cmake g++
     git clone git@github.com:jvm-profiling-tools/perf-map-agent.git
     (cd perf-map-agent && cmake . && make)
     echo 'export PATH="$HOME/install/perf-map-agent/bin:$PATH"' >> ~/.bash_path

@@ -7,7 +7,7 @@ main() {
     cd "$HOME/install"
 
     wget 'https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh'
-    bash Anaconda3-4.4.0-Linux-x86_64.sh -b
+    bash Anaconda3-4.4.0-Linux-x86_64.sh -b -p "$HOME/install/anaconda3"
     echo 'export PATH="$HOME/install/anaconda3/bin:$PATH"' >> ~/.bash_path
 
     # Ideally, running `jupyter notebook` from within a conda environment would
@@ -16,7 +16,7 @@ main() {
     # nb_conda`. See [1] for details.
     #
     # [1]: https://stackoverflow.com/a/42585283/3187068
-    conda install nb_conda
+    # conda install nb_conda
 }
 
 main
