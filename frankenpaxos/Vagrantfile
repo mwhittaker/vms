@@ -37,4 +37,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "file", source: "install_conda.sh", destination: "/vagrant/install_conda_copy.sh"
     config.vm.provision "file", source: "install_mininet.sh", destination: "/vagrant/install_mininet_copy.sh"
     config.vm.provision "file", source: "install_flamegraphs.sh", destination: "/vagrant/install_flamegraphs_copy.sh"
+    config.vm.provision "file", source: "install_prometheus.sh", destination: "/vagrant/install_prometheus_copy.sh"
 end
