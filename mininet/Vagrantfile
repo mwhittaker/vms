@@ -30,4 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision :shell, :path => "root_setup.sh"
     config.vm.provision "file", source: "root_setup.sh", destination: "/vagrant/root_setup_copy.sh"
     config.vm.provision "file", source: "install_dotfiles.sh", destination: "/vagrant/install_dotfiles_copy.sh"
+    config.vm.provision "file", source: "install_mininet.sh", destination: "/vagrant/install_mininet_copy.sh"
+    config.vm.provision "file", source: "install_conda.sh", destination: "/vagrant/install_conda_copy.sh"
 end
