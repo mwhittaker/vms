@@ -14,12 +14,13 @@ main() {
     git clone git://github.com/mininet/mininet
 
     # Install everything (-a) into the install directory (-s install).
-    ./mininet/util/install.sh -s . -a
+    ./mininet/util/install.sh -s . -knfv
 
     # Make sure everything works!
     sudo mn --test pingall
 
     echo 'export PYTHONPATH="/usr/local/lib/python2.7/dist-packages/mininet-2.3.0d4-py2.7.egg:$PYTHONPATH"' >> ~/.bash_path
+    echo 'export PYTHONPATH="/usr/local/lib/python2.7/dist-packages/mininet-2.3.0d5-py2.7.egg:$PYTHONPATH"' >> ~/.bash_path
 }
 
 main
