@@ -10,4 +10,5 @@ bash /vagrant/install_conda_copy.sh
 bash /vagrant/install_mininet_copy.sh
 bash /vagrant/install_flamegraphs_copy.sh
 bash /vagrant/install_prometheus_copy.sh
+bash /vagrant/install_grafana_copy.sh
 ```
