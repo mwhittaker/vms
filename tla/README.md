@@ -1,6 +1,6 @@
 # tla
 ```bash
-bash /vagrant/install_dotfiles.sh
-bash /vagrant/install_java8.sh
+bash /vagrant/install_dotfiles_copy.sh
+bash /vagrant/install_java8_copy.sh
 bash /vagrant/install_tla.sh
 ```
