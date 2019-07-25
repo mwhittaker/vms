@@ -3,9 +3,12 @@
 set -euo pipefail
 
 main() {
-    git clone git@github.com:mwhittaker/dotfiles
-    cd dotfiles
-    yes | ./install.sh
+    cd
+    if [[ ! -d dotfiles ]]; then
+        git clone git@github.com:mwhittaker/dotfiles
+        cd dotfiles
+        yes | ./install.sh
+    fi
 }
 
 main

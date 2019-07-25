@@ -10,9 +10,18 @@ main() {
     #
     # [1]: https://www.scala-lang.org/download/
     local -r version="1.1.6"
-    wget "https://piccolo.link/sbt-${version}.tgz"
-    tar -xzvf "sbt-${version}.tgz"
-    echo 'export PATH="$PATH:$HOME/install/sbt/bin"' >> ~/.bash_path
+    if [[ ! -f "sbt-${version}.tgz" ]]; then
+        wget "https://piccolo.link/sbt-${version}.tgz"
+    fi
+
+    if [[ ! -d sbt ]]; then
+        tar -xzvf "sbt-${version}.tgz"
+    fi
+
+    local s='export PATH="$PATH:$HOME/install/sbt/bin"'
+    if ! grep "$s" ~/.bash_path &> /dev/null; then
+        echo "$s" >> ~/.bash_path
+    fi
 }
 
 main "$@"

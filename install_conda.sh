@@ -6,9 +6,18 @@ main() {
     mkdir -p "$HOME/install"
     cd "$HOME/install"
 
-    wget 'https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh'
-    bash Anaconda3-4.4.0-Linux-x86_64.sh -b -p "$HOME/install/anaconda3"
-    echo 'export PATH="$HOME/install/anaconda3/bin:$PATH"' >> ~/.bash_path
+    if [[ ! -f 'Anaconda3-4.4.0-Linux-x86_64.sh' ]]; then
+        wget 'https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh'
+    fi
+
+    if [[ ! -d "$HOME/install/anaconda3" ]]; then
+        bash Anaconda3-4.4.0-Linux-x86_64.sh -b -p "$HOME/install/anaconda3"
+    fi
+
+    local s='export PATH="$HOME/install/anaconda3/bin:$PATH"'
+    if ! grep "$s" ~/.bash_path &> /dev/null; then
+        echo "$s" >> ~/.bash_path
+    fi
 
     # Ideally, running `jupyter notebook` from within a conda environment would
     # run the the notebook within the conda environment. By default, this is

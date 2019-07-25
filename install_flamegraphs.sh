@@ -12,20 +12,35 @@ main() {
     mkdir -p "$HOME/install"
     cd "$HOME/install"
 
-    # TODO(mwhittaker): Install perf.
+    # Install perf.
+    sudo apt-get install -y linux-tools-common
 
     # Install FlameGraph.
-    git clone git@github.com:brendangregg/FlameGraph.git
-    echo 'export PATH="$HOME/install/FlameGraph:$PATH"' >> ~/.bash_path
+    if [[ ! -d FlameGraph ]]; then
+        git clone git@github.com:brendangregg/FlameGraph.git
+    fi
+
+    local s='export PATH="$HOME/install/FlameGraph:$PATH"'
+    if ! grep "$s" ~/.bash_path &> /dev/null; then
+        echo "$s" >> ~/.bash_path
+    fi
 
     # Install perf-map-agent
     sudo apt-get install -y cmake g++
-    git clone git@github.com:jvm-profiling-tools/perf-map-agent.git
-    (cd perf-map-agent && cmake . && make)
-    echo 'export PATH="$HOME/install/perf-map-agent/bin:$PATH"' >> ~/.bash_path
+    if [[ ! -d perf-map-agent ]]; then
+        git clone git@github.com:jvm-profiling-tools/perf-map-agent.git
+        (cd perf-map-agent && cmake . && make)
+    fi
+
+    local s='export PATH="$HOME/install/perf-map-agent/bin:$PATH"'
+    if ! grep "$s" ~/.bash_path &> /dev/null; then
+        echo "$s">> ~/.bash_path
+    fi
 
     # Install FlameScope.
-    git clone git@github.com:Netflix/flamescope.git
+    if [[ ! -d flamescope ]]; then
+        git clone git@github.com:Netflix/flamescope.git
+    fi
 }
 
 main
